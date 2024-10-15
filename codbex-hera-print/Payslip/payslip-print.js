@@ -5,7 +5,7 @@ const viewData = {
     perspective: 'Payrolls',
     view: 'PayrollEntry',
     type: 'entity',
-    order: 13
+    order: 117
 };
 
 if (typeof exports !== 'undefined') {

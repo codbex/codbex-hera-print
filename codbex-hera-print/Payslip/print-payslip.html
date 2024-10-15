@@ -28,8 +28,7 @@
                                 </td>
 
                                 <td>
-                                    <!-- Goods Issue Date: <b>{{GoodsIssue.Date | date: 'yyyy-MM-dd'}}</b><br />
-                                    Goods Issue Number: <b>{{GoodsIssue.Number}}</b> -->
+                                    Date: <b>{{Date | date: 'yyyy-MM-dd'}}</b>
                                 </td>
                             </tr>
                         </table>
@@ -37,7 +36,7 @@
                 </tr>
             </table>
 
-            <div class="issue-jumbo">Payslip</div>
+            <div class="payslip-jumbo">Payslip</div>
 
             <table cellpadding="0" cellspacing="0">
                 <tr class="information">
@@ -45,40 +44,16 @@
                         <table>
                             <tr>
                                 <td>
-                                    <!-- <b>{{Company.Name}}</b><br />
-                                    {{Company.Address}}<br />
-                                    {{Company.PostCode}}, {{Company.City}}, {{Company.Country}} -->
-                                </td>
-
-                                <td>
-                                    <!-- <b>{{Store.Name}}</b><br />
-                                    {{Store.Phone}}<br />
-                                    {{Store.Email}}<br />
-                                    {{Store.Address}}<br /> -->
+                                    Employee: <b>{{Employee.Name}}</b><br />
+                                    Personal number: <b>{{Employee.PersonalNumber}}</b><br />
+                                    Department: <b>{{Department.Name}}</b><br />
+                                    Job role: <b>{{JobRole.Name}}</b> <br />
+                                    Pay period: <b>{{PayrollEntry.StartDate | date: 'yyyy-MM-dd'}} -
+                                        {{PayrollEntry.EndDate | date: 'yyyy-MM-dd'}}</b>
                                 </td>
                             </tr>
                         </table>
                     </td>
-                </tr>
-            </table>
-
-            <table cellpadding="0" cellspacing="0">
-                <tr class="heading">
-                    <!-- <td>Item</td>
-                    <td>Quantity</td>
-                    <td>Price</td>
-                    <td>Net</td>
-                    <td>VAT</td>
-                    <td>Gross</td> -->
-                </tr>
-
-                <tr class="item" ng-repeat="next in GoodsIssueItems">
-                    <!-- <td>{{next.Product}}</td>
-                    <td>{{next.Quantity| number}}</td>
-                    <td>{{next.Price| number}}</td>
-                    <td>{{next.Net| number}}</td>
-                    <td>{{next.VAT| number}}</td>
-                    <td>{{next.Gross| number}}</td> -->
                 </tr>
             </table>
 
@@ -87,27 +62,24 @@
 
             <table cellpadding="0" cellspacing="0">
                 <tr class="information">
-                    <td colspan="2">
+                    <td colspan="3">
                         <table>
                             <tr>
                                 <td>
-                                    <!-- TIN #: <b>{{Company.TIN}}</b><br />
-                                    e-mail: {{Company.Email}}<br />
-                                    Phone: {{Company.Phone}} -->
-                                </td>
-
-                                <td>
-                                    <!-- IBAN: <b>{{Company.IBAN}}</b><br />
-                                    SWIFT: {{Company.SWIFT}}<br />
-                                    Bank: {{Company.Bank}} -->
+                                    Earnings:<br />
+                                    &nbsp;&nbsp;<b>{{Gross}} {{Currency.Code}}</b></br>
+                                    <hr />
+                                    Deductions:<br />
+                                    &nbsp;&nbsp;<b>{{PayrollEntry.Taxes}} {{Currency.Code}}</b></br>
+                                    <hr />
+                                    Net pay:<br />
+                                    &nbsp;&nbsp;<b>{{PayrollEntry.NetSalary}} {{Currency.Code}}</b></br>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
             </table>
-
-            <div class="issue-footer">THANK YOU FOR YOUR BUSINESS!</div>
 
         </div>
     </body>

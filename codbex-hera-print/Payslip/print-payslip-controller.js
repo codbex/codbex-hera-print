@@ -7,5 +7,12 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', funct
     $http.get(printPayslipUrl)
         .then(function (response) {
             $scope.PayrollEntry = response.data.payrollEntry;
+            $scope.Date = new Date();
+            $scope.Employee = response.data.employee;
+            $scope.Department = response.data.department;
+            $scope.JobRole = response.data.jobRole;
+            $scope.Salary = response.data.salary;
+            $scope.Currency = response.data.currency;
+            $scope.Gross = $scope.PayrollEntry.NetSalary + $scope.PayrollEntry.Taxes;
         });
 }]);

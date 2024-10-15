@@ -44,7 +44,7 @@
 }
 
 .date-box table tr.information table td {
-    padding-bottom: 40px;
+    padding-bottom: 10px;
 }
 
 .date-box table tr.heading td {
@@ -70,9 +70,10 @@
     font-weight: bold;
 }
 
-.issue-jumbo {
+.payslip-jumbo {
     text-align: center;
     font-size: 3em;
+    margin-bottom: 1em;
     font-weight: bold;
     color: gray;
 }

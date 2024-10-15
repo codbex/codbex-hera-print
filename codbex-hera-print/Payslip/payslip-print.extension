@@ -1,5 +1,5 @@
 {
     "module": "codbex-hera-print/Payslip/payslip-print.js",
-    "extensionPoint": "codbex-payments-custom-action",
+    "extensionPoint": "codbex-payrolls-custom-action",
     "description": "Print Payslip Custom Action"
 }
