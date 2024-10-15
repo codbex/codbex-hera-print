@@ -1,0 +1,10 @@
+{
+    "name": "codbex/codbex-hera-print",
+    "repository": {
+        "url": "https://github.com/codbex/codbex-hera-print.git",
+        "type": "git"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    }
+}
