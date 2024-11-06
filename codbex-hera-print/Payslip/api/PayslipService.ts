@@ -1,4 +1,6 @@
 import { PayrollEntryRepository as PayrollEntryDao } from "codbex-payrolls/gen/codbex-payrolls/dao/Payrolls/PayrollEntryRepository";
+import { PayrollEntryItemRepository as PayrollEntryItemDao } from "codbex-payrolls/gen/codbex-payrolls/dao/Payrolls/PayrollEntryItemRepository";
+import { PayrollEntryItemTypeRepository as PayrollEntryItemTypeDao } from "codbex-payrolls/gen/codbex-payrolls/dao/entities/PayrollEntryItemTypeRepository";
 import { EmployeeRepository as EmployeeDao } from "codbex-employees/gen/codbex-employees/dao/Employees/EmployeeRepository";
 import { EmployeeAssignmentRepository as EmployeeAssignmentDao } from "codbex-employees/gen/codbex-employees/dao/Employees/EmployeeAssignmentRepository";
 import { JobAssignmentRepository as JobAssignmentDao } from "codbex-jobs/gen/codbex-jobs/dao/JobAssignment/JobAssignmentRepository";
@@ -22,6 +24,8 @@ class PayslipService {
     private readonly jobRoleDao;
     private readonly salaryDao;
     private readonly currencyDao;
+    private readonly payrollEntryItemDao;
+    private readonly payrollEntryItemTypeDao;
 
 
     constructor() {
@@ -34,6 +38,8 @@ class PayslipService {
         this.jobRoleDao = new JobRoleDao();
         this.salaryDao = new SalaryDao();
         this.currencyDao = new CurrencyDao();
+        this.payrollEntryItemDao = new PayrollEntryItemDao();
+        this.payrollEntryItemTypeDao = new PayrollEntryItemTypeDao();
     }
 
     @Get("/:payrollId")
@@ -85,7 +91,7 @@ class PayslipService {
         const jobRole = this.jobRoleDao.findAll({
             $filter: {
                 equals: {
-                    Id: jobPosition[0].JobRole
+                    Id: jobPosition[0].Role
                 }
             }
         });
@@ -106,13 +112,40 @@ class PayslipService {
             }
         });
 
+        const deductions = this.payrollEntryItemDao.findAll({
+            $filter: {
+                equals: {
+                    PayrollEntry: payrollEntry.Id
+                },
+                notEquals: {
+                    Type: 1
+                }
+            }
+        });
+
+        let deductionsArr = [];
+
+        deductions.forEach((deduction) => {
+
+            const payrollItemType = this.payrollEntryItemTypeDao.findById(deduction.Type);
+
+            const currentDeduction = {
+                "Name": payrollItemType.Name,
+                "Amount": deduction.Amount
+            }
+
+            deductionsArr.push(currentDeduction);
+
+        });
+
         return {
             payrollEntry: payrollEntry,
             employee: employees[0],
             department: department[0],
             jobRole: jobRole[0],
             salary: salary[0],
-            currency: currency[0]
+            currency: currency[0],
+            deductions: deductionsArr,
         }
 
     }

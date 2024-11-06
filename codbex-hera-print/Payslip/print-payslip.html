@@ -48,8 +48,8 @@
                                     Personal number: <b>{{Employee.PersonalNumber}}</b><br />
                                     Department: <b>{{Department.Name}}</b><br />
                                     Job role: <b>{{JobRole.Name}}</b> <br />
-                                    Pay period: <b>{{PayrollEntry.StartDate | date: 'yyyy-MM-dd'}} -
-                                        {{PayrollEntry.EndDate | date: 'yyyy-MM-dd'}}</b>
+                                    Pay period: <b>{{PayrollEntry.StartDate | date: 'yyyy/MM/dd'}} -
+                                        {{PayrollEntry.EndDate | date: 'yyyy/MM/dd'}}</b>
                                 </td>
                             </tr>
                         </table>
@@ -67,13 +67,15 @@
                             <tr>
                                 <td>
                                     Earnings:<br />
-                                    &nbsp;&nbsp;<b>{{Gross}} {{Currency.Code}}</b></br>
+                                    &nbsp;&nbsp;<b>{{Amount}} {{Currency.Code}}</b></br>
                                     <hr />
                                     Deductions:<br />
-                                    &nbsp;&nbsp;<b>{{PayrollEntry.Taxes}} {{Currency.Code}}</b></br>
+                                    <p ng-repeat="next in Deductions">
+                                        <b>{{next.Name}} - {{next.Amount}} {{Currency.Code}}</b>
+                                    </p>
                                     <hr />
                                     Net pay:<br />
-                                    &nbsp;&nbsp;<b>{{PayrollEntry.NetSalary}} {{Currency.Code}}</b></br>
+                                    &nbsp;&nbsp;<b>{{Salary.Net}} {{Currency.Code}}</b></br>
                                 </td>
                             </tr>
                         </table>
