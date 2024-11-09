@@ -13,6 +13,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', funct
             $scope.JobRole = response.data.jobRole;
             $scope.Salary = response.data.salary;
             $scope.Currency = response.data.currency;
-            $scope.Gross = $scope.PayrollEntry.NetSalary + $scope.PayrollEntry.Taxes;
+            $scope.Amount = $scope.PayrollEntry.Amount;
+            $scope.Deductions = response.data.deductions;
         });
 }]);
