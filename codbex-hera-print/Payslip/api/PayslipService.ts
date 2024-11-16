@@ -118,23 +118,51 @@ class PayslipService {
                     PayrollEntry: payrollEntry.Id
                 },
                 notEquals: {
-                    Type: 1
+                    Type: [1, 2]
                 }
             }
         });
 
-        let deductionsArr = [];
+        const earnings = this.payrollEntryItemDao.findAll({
+            $filter: {
+                equals: {
+                    PayrollEntry: payrollEntry.Id,
+                    Type: 2
+                },
+            }
+        });
+
+        let earningsArray = [];
+        let deductionsArray = [];
+        let earningsTotal = salary[0].Gross;
+        let deductionsTotal = 0;
+
 
         deductions.forEach((deduction) => {
 
             const payrollItemType = this.payrollEntryItemTypeDao.findById(deduction.Type);
+            deductionsTotal += deduction.Amount;
 
             const currentDeduction = {
                 "Name": payrollItemType.Name,
                 "Amount": deduction.Amount
             }
 
-            deductionsArr.push(currentDeduction);
+            deductionsArray.push(currentDeduction);
+        });
+
+        earnings.forEach((earning) => {
+
+            const payrollItemType = this.payrollEntryItemTypeDao.findById(earning.Type);
+
+            const currentEarning = {
+                "Name": payrollItemType.Name,
+                "Amount": earning.Amount
+            }
+
+            earningsTotal += earning.Amount;
+
+            earningsArray.push(currentEarning);
 
         });
 
@@ -143,9 +171,12 @@ class PayslipService {
             employee: employees[0],
             department: department[0],
             jobRole: jobRole[0],
-            salary: salary[0],
             currency: currency[0],
-            deductions: deductionsArr,
+            earnings: earningsArray,
+            salary: salary[0],
+            deductions: deductionsArray,
+            earningsTotal: earningsTotal,
+            deductionsTotal: deductionsTotal
         }
 
     }

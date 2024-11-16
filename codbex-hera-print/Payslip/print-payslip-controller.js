@@ -11,9 +11,12 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', funct
             $scope.Employee = response.data.employee;
             $scope.Department = response.data.department;
             $scope.JobRole = response.data.jobRole;
+            $scope.Earnings = response.data.earnings;
             $scope.Salary = response.data.salary;
             $scope.Currency = response.data.currency;
             $scope.Amount = $scope.PayrollEntry.Amount;
             $scope.Deductions = response.data.deductions;
+            $scope.EarningsTotal = response.data.earningsTotal;
+            $scope.DeductionsTotal = response.data.deductionsTotal;
         });
 }]);
