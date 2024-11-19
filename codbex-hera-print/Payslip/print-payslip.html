@@ -36,7 +36,9 @@
                 </tr>
             </table>
 
+
             <div class="payslip-jumbo">Payslip</div>
+
 
             <table cellpadding="0" cellspacing="0">
                 <tr class="information">
@@ -60,28 +62,52 @@
             <hr />
             <br />
 
-            <table cellpadding="0" cellspacing="0">
-                <tr class="information">
-                    <td colspan="3">
-                        <table>
-                            <tr>
-                                <td>
-                                    Earnings:<br />
-                                    &nbsp;&nbsp;<b>{{Amount}} {{Currency.Code}}</b></br>
-                                    <hr />
-                                    Deductions:<br />
-                                    <p ng-repeat="next in Deductions">
-                                        <b>{{next.Name}} - {{next.Amount}} {{Currency.Code}}</b>
-                                    </p>
-                                    <hr />
-                                    Net pay:<br />
-                                    &nbsp;&nbsp;<b>{{Salary.Net}} {{Currency.Code}}</b></br>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+            <div class="earnings-deductions">
+                <table cellpadding="0" cellspacing="0">
+                    <tr class="heading">
+                        <td>Earnings</td>
+                        <td>Amount</td>
+                    </tr>
+                    <tr>
+                        <td>Base Salary</td>
+                        <td>{{Salary.Gross}}</td>
+                    </tr>
+
+                    <tr ng-repeat="earning in Earnings">
+                        <td>{{ earning.Name }}</td>
+                        <td>{{ earning.Amount }} {{ Currency.Code }}</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><b>Total:</b> {{EarningsTotal}} {{ Currency.Code }}</td>
+                    </tr>
+                </table>
+
+                <table cellpadding="0" cellspacing="0">
+                    <tr class="heading">
+                        <td>Deductions</td>
+                        <td>Amount</td>
+                    </tr>
+
+                    <tr ng-repeat="deduction in Deductions">
+                        <td>{{ deduction.Name }}</td>
+                        <td>{{ deduction.Amount }} {{ Currency.Code }}</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><b>Total:</b> {{DeductionsTotal}} {{ Currency.Code }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <hr />
+            <br />
+
+            <div>
+                <b>Net pay:</b> {{EarningsTotal - DeductionsTotal}} {{Currency.Code}}
+            </div>
 
         </div>
     </body>

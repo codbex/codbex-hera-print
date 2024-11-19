@@ -70,6 +70,10 @@
     font-weight: bold;
 }
 
+table {
+    margin-bottom: 1em;
+}
+
 .payslip-jumbo {
     text-align: center;
     font-size: 3em;
