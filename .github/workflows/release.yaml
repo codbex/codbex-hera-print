@@ -20,7 +20,7 @@ jobs:
       release-content: |
         ## codbex-invoices - ${{ inputs.release-version }}
         
-        Invoices Management Module
+        Hera Print Management Module
         
         ## Installation
         
