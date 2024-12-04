@@ -18,7 +18,7 @@ jobs:
       packages-build: codbex-hera-print
       release-version: ${{ inputs.release-version }}
       release-content: |
-        ## codbex-invoices - ${{ inputs.release-version }}
+        ## codbex-hera-print - ${{ inputs.release-version }}
         
         Hera Print Management Module
         
