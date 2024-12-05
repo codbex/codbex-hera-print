@@ -1,5 +1,6 @@
 {
     "name": "@codbex/codbex-hera-print",
+    "version": "0.0.1",
     "repository": {
         "url": "https://github.com/codbex/codbex-hera-print.git",
         "type": "git"
