@@ -1,5 +1,5 @@
 {
-    "name": "codbex/codbex-hera-print",
+    "name": "@codbex/codbex-hera-print",
     "repository": {
         "url": "https://github.com/codbex/codbex-hera-print.git",
         "type": "git"
